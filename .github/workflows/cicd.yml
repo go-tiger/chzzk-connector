@@ -91,9 +91,9 @@ jobs:
 
             # Nginx 설정 변경
             if [ "$NEW_DEPLOYMENT" == "green" ]; then
-              sed -i "s/proxy_pass http:\/\/chzzk-connector-$OLD_DEPLOYMENT:${{ secrets.ENV_PORT }};/proxy_pass http:\/\/chzzk-connector-$NEW_DEPLOYMENT:${{ secrets.ENV_PORT }};/" ${{ secrets.SERVER_PATH }}/nginx/conf.d/streamer-registry.conf
+              sed -i "s/proxy_pass http:\/\/chzzk-connector-$OLD_DEPLOYMENT:${{ secrets.ENV_PORT }};/proxy_pass http:\/\/chzzk-connector-$NEW_DEPLOYMENT:${{ secrets.ENV_PORT }};/" ${{ secrets.SERVER_PATH }}/nginx/conf.d/chzzk-connector.conf
             else
-              sed -i "s/proxy_pass http:\/\/chzzk-connector-$OLD_DEPLOYMENT:${{ secrets.ENV_PORT }};/proxy_pass http:\/\/chzzk-connector-$NEW_DEPLOYMENT:${{ secrets.ENV_PORT }};/" ${{ secrets.SERVER_PATH }}/nginx/conf.d/streamer-registry.conf
+              sed -i "s/proxy_pass http:\/\/chzzk-connector-$OLD_DEPLOYMENT:${{ secrets.ENV_PORT }};/proxy_pass http:\/\/chzzk-connector-$NEW_DEPLOYMENT:${{ secrets.ENV_PORT }};/" ${{ secrets.SERVER_PATH }}/nginx/conf.d/chzzk-connector.conf
             fi
 
             # Nginx 재시작
