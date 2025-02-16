@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CreateDeveloperDto } from './dto/create-developer.dto';
-import { UpdateDeveloperDto } from './dto/update-developer.dto';
+import { CreateDeveloperDto, UpdateDeveloperDto } from 'src/dtos';
 
 @Injectable()
 export class DevelopersService {

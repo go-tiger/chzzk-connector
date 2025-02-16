@@ -1,7 +1,6 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { DevelopersService } from './developers.service';
-import { CreateDeveloperDto } from './dto/create-developer.dto';
-import { UpdateDeveloperDto } from './dto/update-developer.dto';
+import { CreateDeveloperDto, UpdateDeveloperDto } from 'src/dtos';
 
 @Controller('developers')
 export class DevelopersController {
