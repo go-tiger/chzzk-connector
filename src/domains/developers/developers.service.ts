@@ -30,7 +30,12 @@ export class DevelopersService {
     }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} developer`;
+  async remove(id: number) {
+    try {
+      const developer = await this.DevelopersRepository.findOneByOrFail({ id });
+      return await this.DevelopersRepository.remove(developer);
+    } catch {
+      throw new NotFoundException('등록된 개발자가 아닙니다.');
+    }
   }
 }
