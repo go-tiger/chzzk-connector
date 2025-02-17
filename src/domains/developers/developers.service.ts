@@ -1,10 +1,15 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { CreateDeveloperDto, UpdateDeveloperDto } from 'src/dtos';
+import { Developer } from 'src/entities/developer';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class DevelopersService {
-  create(createDeveloperDto: CreateDeveloperDto) {
-    return 'This action adds a new developer';
+  constructor(@InjectRepository(Developer) private DeveloperSRepository: Repository<Developer>) {}
+
+  async create(dto: CreateDeveloperDto) {
+    return await this.DeveloperSRepository.save({ clientId: dto.clientId, clientSecret: dto.clientSecret });
   }
 
   findAll() {
