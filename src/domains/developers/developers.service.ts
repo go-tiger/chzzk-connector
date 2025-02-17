@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateDeveloperDto, UpdateDeveloperDto } from 'src/dtos';
 import { Developer } from 'src/entities/developer';
@@ -13,7 +13,11 @@ export class DevelopersService {
   }
 
   async findOne(id: number) {
-    return await this.DevelopersRepository.findOneByOrFail({ id });
+    try {
+      return await this.DevelopersRepository.findOneByOrFail({ id });
+    } catch {
+      throw new NotFoundException('등록된 개발자가 아닙니다.');
+    }
   }
 
   update(id: number, updateDeveloperDto: UpdateDeveloperDto) {
