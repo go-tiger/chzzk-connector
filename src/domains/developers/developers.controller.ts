@@ -17,8 +17,8 @@ export class DevelopersController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateDeveloperDto: UpdateDeveloperDto) {
-    return this.developersService.update(+id, updateDeveloperDto);
+  update(@Param('id') id: string, @Body() dto: UpdateDeveloperDto) {
+    return this.developersService.update(+id, dto);
   }
 
   @Delete(':id')

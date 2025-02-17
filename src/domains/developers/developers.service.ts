@@ -20,8 +20,14 @@ export class DevelopersService {
     }
   }
 
-  update(id: number, updateDeveloperDto: UpdateDeveloperDto) {
-    return `This action updates a #${id} developer`;
+  async update(id: number, dto: UpdateDeveloperDto) {
+    try {
+      const developer = await this.DevelopersRepository.findOneByOrFail({ id });
+      Object.assign(developer, dto);
+      return await this.DevelopersRepository.save(developer);
+    } catch {
+      throw new NotFoundException('등록된 개발자가 아닙니다.');
+    }
   }
 
   remove(id: number) {
