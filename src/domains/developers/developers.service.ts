@@ -12,8 +12,8 @@ export class DevelopersService {
     return await this.DevelopersRepository.save({ clientId: dto.clientId, clientSecret: dto.clientSecret });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} developer`;
+  async findOne(id: number) {
+    return await this.DevelopersRepository.findOneByOrFail({ id });
   }
 
   update(id: number, updateDeveloperDto: UpdateDeveloperDto) {
