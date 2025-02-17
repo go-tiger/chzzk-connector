@@ -6,10 +6,10 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class DevelopersService {
-  constructor(@InjectRepository(Developer) private DeveloperSRepository: Repository<Developer>) {}
+  constructor(@InjectRepository(Developer) private DevelopersRepository: Repository<Developer>) {}
 
   async create(dto: CreateDeveloperDto) {
-    return await this.DeveloperSRepository.save({ clientId: dto.clientId, clientSecret: dto.clientSecret });
+    return await this.DevelopersRepository.save({ clientId: dto.clientId, clientSecret: dto.clientSecret });
   }
 
   findOne(id: number) {
