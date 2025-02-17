@@ -11,11 +11,6 @@ export class DevelopersController {
     return this.developersService.create(dto);
   }
 
-  @Get()
-  findAll() {
-    return this.developersService.findAll();
-  }
-
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.developersService.findOne(+id);

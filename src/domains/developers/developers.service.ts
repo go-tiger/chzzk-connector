@@ -12,10 +12,6 @@ export class DevelopersService {
     return await this.DeveloperSRepository.save({ clientId: dto.clientId, clientSecret: dto.clientSecret });
   }
 
-  findAll() {
-    return `This action returns all developers`;
-  }
-
   findOne(id: number) {
     return `This action returns a #${id} developer`;
   }
