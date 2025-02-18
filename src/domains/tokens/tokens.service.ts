@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Token } from 'src/entities/token';
 import { Repository } from 'typeorm';
-import { GetCodeDto } from 'src/dtos';
+import { GetCodeDto, RefreshTokenDto } from 'src/dtos';
 import { CHZZK_BASE_URLS } from 'src/configs/chzzk.config';
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
@@ -61,6 +61,37 @@ export class TokensService {
       return await this.TokenRepository.findOneByOrFail({ id });
     } catch {
       throw new NotFoundException('검색 결과 없음');
+    }
+  }
+
+  async refreshToken(id: number, dto: RefreshTokenDto) {
+    const developer = await this.developersService.findOne(id);
+
+    const token = await this.TokenRepository.findOne({ where: { refreshToken: dto.refreshToken } });
+    if (!token) throw new NotFoundException('검색 결과 없음');
+
+    const requestBody = {
+      grantType: GrantType.RE_AUTH,
+      refreshToken: dto.refreshToken,
+      clientId: developer.clientId,
+      clientSecret: developer.clientSecret,
+    };
+
+    try {
+      const { data } = await firstValueFrom(this.httpService.post(this.chzzkTokenUrl, requestBody));
+
+      Object.assign(token, {
+        accessToken: data.content.accessToken,
+        refreshToken: data.content.refreshToken,
+        createdAt: new Date(),
+        expiresAt: new Date(Date.now() + data.content.expiresIn * 1000),
+      });
+
+      await this.TokenRepository.save(token);
+
+      console.log('🚀  응답 데이터:', data);
+    } catch (e) {
+      console.log('🚀  e:', e);
     }
   }
 }

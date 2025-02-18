@@ -36,3 +36,5 @@ export class GetCodeDto extends PickType(TokenDto, ['code'] as const) {
   @ApiProperty({ example: 'zxclDasdfA25', description: 'state' })
   state: string;
 }
+
+export class RefreshTokenDto extends PickType(TokenDto, ['refreshToken'] as const) {}

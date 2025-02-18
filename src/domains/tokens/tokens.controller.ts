@@ -1,6 +1,6 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Query } from '@nestjs/common';
 import { TokensService } from './tokens.service';
-import { GetCodeDto } from 'src/dtos';
+import { GetCodeDto, RefreshTokenDto } from 'src/dtos';
 
 @Controller('tokens')
 export class TokensController {
@@ -14,5 +14,10 @@ export class TokensController {
   @Get(':id')
   findOneToken(@Param('id') id: string) {
     return this.tokensService.findOneToken(+id);
+  }
+
+  @Patch(':id')
+  refreshToken(@Param('id') id: string, @Body() dto: RefreshTokenDto) {
+    return this.tokensService.refreshToken(+id, dto);
   }
 }
