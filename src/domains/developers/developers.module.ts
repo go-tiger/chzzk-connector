@@ -8,5 +8,6 @@ import { Developer } from 'src/entities/developer';
   imports: [TypeOrmModule.forFeature([Developer])],
   controllers: [DevelopersController],
   providers: [DevelopersService],
+  exports: [DevelopersService],
 })
 export class DevelopersModule {}
