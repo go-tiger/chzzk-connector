@@ -1,4 +1,4 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { TokensService } from './tokens.service';
 import { GetCodeDto } from 'src/dtos';
 
@@ -9,5 +9,10 @@ export class TokensController {
   @Get()
   issueToken(@Query() query: GetCodeDto) {
     return this.tokensService.issueToken(query);
+  }
+
+  @Get(':id')
+  findOneToken(@Param('id') id: string) {
+    return this.tokensService.findOneToken(+id);
   }
 }

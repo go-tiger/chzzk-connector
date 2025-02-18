@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Token } from 'src/entities/token';
 import { Repository } from 'typeorm';
@@ -53,6 +53,14 @@ export class TokensService {
       return savedToken;
     } catch (e) {
       console.log('🚀  e:', e);
+    }
+  }
+
+  async findOneToken(id: number) {
+    try {
+      return await this.TokenRepository.findOneByOrFail({ id });
+    } catch {
+      throw new NotFoundException('검색 결과 없음');
     }
   }
 }
