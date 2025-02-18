@@ -30,7 +30,7 @@ export class Token {
   @CreateDateColumn({ type: 'timestamp', name: 'created_at', nullable: false })
   createdAt: Date;
 
-  @Column({ type: 'timestamp', name: 'expires_at' })
+  @Column({ type: 'timestamp', name: 'expires_at', nullable: true })
   expiresAt: Date;
 
   @OneToOne(() => Streamer)
