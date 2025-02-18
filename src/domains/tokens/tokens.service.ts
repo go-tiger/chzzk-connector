@@ -2,12 +2,13 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Token } from 'src/entities/token';
 import { Repository } from 'typeorm';
-import { GetCodeDto, RefreshTokenDto } from 'src/dtos';
+import { GetCodeDto, RefreshTokenDto, RevokeTokenDto } from 'src/dtos';
 import { CHZZK_BASE_URLS } from 'src/configs/chzzk.config';
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
 import { DevelopersService } from '../developers/developers.service';
 import { GrantType } from 'src/enums/grant-type.enum';
+import { TokenType } from 'src/enums/token-type.enum';
 
 @Injectable()
 export class TokensService {
@@ -86,6 +87,41 @@ export class TokensService {
         createdAt: new Date(),
         expiresAt: new Date(Date.now() + data.content.expiresIn * 1000),
       });
+
+      await this.TokenRepository.save(token);
+
+      console.log('🚀  응답 데이터:', data);
+    } catch (e) {
+      console.log('🚀  e:', e);
+    }
+  }
+
+  async revokeToken(id: number, dto: RevokeTokenDto) {
+    console.log('🚀  id:', id);
+    const developer = await this.developersService.findOne(id);
+
+    const token = await this.TokenRepository.findOne({
+      where: [{ accessToken: dto.token }, { refreshToken: dto.token }],
+    });
+    if (!token) throw new NotFoundException('검색 결과 없음');
+    console.log('🚀  requestBody.dto.tokenType:', dto.tokenType);
+    const tokenType = TokenType[dto.tokenType as unknown as keyof typeof TokenType];
+
+    const requestBody = {
+      clientId: developer.clientId,
+      clientSecret: developer.clientSecret,
+      token: dto.token,
+      tokenTypeHint: tokenType,
+    };
+
+    try {
+      const { data } = await firstValueFrom(this.httpService.post(`${this.chzzkTokenUrl}/revoke`, requestBody));
+
+      if (tokenType === TokenType.ACCESS) {
+        token.accessToken = 'null';
+      } else if (tokenType === TokenType.REFRESH) {
+        token.refreshToken = 'null';
+      }
 
       await this.TokenRepository.save(token);
 

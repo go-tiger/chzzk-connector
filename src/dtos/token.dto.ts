@@ -1,4 +1,5 @@
 import { ApiProperty, PickType } from '@nestjs/swagger';
+import { TokenType } from 'src/enums/token-type.enum';
 
 export class TokenDto {
   @ApiProperty({ example: 1, description: '토큰의 고유 ID' })
@@ -38,3 +39,11 @@ export class GetCodeDto extends PickType(TokenDto, ['code'] as const) {
 }
 
 export class RefreshTokenDto extends PickType(TokenDto, ['refreshToken'] as const) {}
+
+export class RevokeTokenDto {
+  @ApiProperty({ example: 'dGhpcyBpcyBhIHJlZnJlc2gtdG9rZW4', description: '삭제할 토큰' })
+  token: string;
+
+  @ApiProperty({ example: 'ACCESS 또는 REFRESH', enum: TokenType })
+  tokenType: TokenType;
+}
