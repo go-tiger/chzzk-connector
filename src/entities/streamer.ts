@@ -13,7 +13,7 @@ export class Streamer {
   @Column({ type: 'varchar' })
   name: string;
 
-  @OneToOne(() => Token)
+  @OneToOne(() => Token, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'token_id' })
   token: Token;
 
