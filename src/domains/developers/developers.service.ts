@@ -1,15 +1,23 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateDeveloperDto, UpdateDeveloperDto } from 'src/dtos';
 import { Developer } from 'src/entities/developer';
 import { Repository } from 'typeorm';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class DevelopersService {
   constructor(@InjectRepository(Developer) private DevelopersRepository: Repository<Developer>) {}
 
   async create(dto: CreateDeveloperDto) {
-    return await this.DevelopersRepository.save({ clientId: dto.clientId, clientSecret: dto.clientSecret });
+    const { email, password, clientId, clientSecret } = dto;
+    const checkemail = await this.DevelopersRepository.findOne({ where: { email } });
+
+    if (checkemail !== null) throw new ConflictException('이미 이메일이 등록되어 있습니다.');
+
+    const hashPassword = await bcrypt.hash(password, 11);
+
+    return await this.DevelopersRepository.save({ email, password: hashPassword, clientId, clientSecret });
   }
 
   async findOne(id: number) {
