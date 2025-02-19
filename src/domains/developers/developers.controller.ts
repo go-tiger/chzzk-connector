@@ -6,7 +6,7 @@ import { CreateDeveloperDto, UpdateDeveloperDto } from 'src/dtos';
 export class DevelopersController {
   constructor(private readonly developersService: DevelopersService) {}
 
-  @Post()
+  @Post('signup')
   create(@Body() dto: CreateDeveloperDto) {
     return this.developersService.create(dto);
   }
