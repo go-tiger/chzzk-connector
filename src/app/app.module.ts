@@ -8,6 +8,7 @@ import { DevelopersModule } from 'src/domains/developers/developers.module';
 import { EventsModule } from 'src/domains/events/events.module';
 import { SessionsModule } from 'src/domains/sessions/sessions.module';
 import { TokensModule } from 'src/domains/tokens/tokens.module';
+import { StreamersModule } from 'src/domains/streamers/streamers.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { TokensModule } from 'src/domains/tokens/tokens.module';
     EventsModule,
     SessionsModule,
     TokensModule,
+    StreamersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
