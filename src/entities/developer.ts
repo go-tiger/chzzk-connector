@@ -19,6 +19,9 @@ export class Developer {
   @Column({ type: 'text', name: 'client_secret', unique: true })
   clientSecret: string;
 
+  @Column({ type: 'varchar', name: 'application_id', unique: true })
+  applicationId: string;
+
   @OneToOne(() => Session)
   sessions: Session;
 

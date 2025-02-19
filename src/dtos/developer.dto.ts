@@ -20,6 +20,10 @@ export class DeveloperDto {
   @ApiProperty({ example: 'NwelrUQjkYmOuobj8OLrLGlWL5ElxrldhDeXB-PuGFs' })
   @Expose()
   clientSecret: string;
+
+  @ApiProperty({ example: 'gotiger' })
+  @Expose()
+  applicationId: string;
 }
 
 export class CreateDeveloperDto extends OmitType(DeveloperDto, ['id'] as const) {}

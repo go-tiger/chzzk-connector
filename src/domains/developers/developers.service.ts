@@ -15,14 +15,20 @@ export class DevelopersService {
   ) {}
 
   async create(dto: CreateDeveloperDto) {
-    const { email, password, clientId, clientSecret } = dto;
+    const { email, password, clientId, clientSecret, applicationId } = dto;
     const checkemail = await this.DevelopersRepository.findOne({ where: { email } });
 
     if (checkemail !== null) throw new ConflictException('이미 이메일이 등록되어 있습니다.');
 
     const hashPassword = await bcrypt.hash(password, 11);
 
-    const developer = await this.DevelopersRepository.save({ email, password: hashPassword, clientId, clientSecret });
+    const developer = await this.DevelopersRepository.save({
+      email,
+      password: hashPassword,
+      clientId,
+      clientSecret,
+      applicationId,
+    });
     return plainToInstance(DeveloperResDto, developer, { excludeExtraneousValues: true });
   }
 
