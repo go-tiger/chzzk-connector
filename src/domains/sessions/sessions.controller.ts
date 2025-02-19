@@ -20,4 +20,9 @@ export class SessionsController {
   findSessionClient(@Param('id') id: string, @Query() dto: FindSessionDto) {
     return this.sessionsService.findSessionClient(+id, dto);
   }
+
+  @Get(':id/user')
+  findSessionUser(@Param('id') id: string, @Query() dto: FindSessionDto) {
+    return this.sessionsService.findSessionUser(+id, dto);
+  }
 }

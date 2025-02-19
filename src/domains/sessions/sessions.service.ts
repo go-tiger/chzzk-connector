@@ -90,4 +90,25 @@ export class SessionsService {
       console.log('🚀 e:', e);
     }
   }
+
+  async findSessionUser(id: number, dto: FindSessionDto) {
+    const token = await this.tokensService.findOneToken(id);
+
+    const requestHeader = {
+      Authorization: token.tokenType + ' ' + token.accessToken,
+      'Content-Type': 'application/json',
+    };
+
+    try {
+      const { data } = await firstValueFrom(
+        this.httpService.get(`${this.chzzkOpenApi}/open/v1/sessions`, {
+          headers: requestHeader,
+          params: { size: dto.size, page: dto.page },
+        }),
+      );
+      return data;
+    } catch (e) {
+      console.log('🚀 e:', e);
+    }
+  }
 }
