@@ -1,10 +1,11 @@
 import { ConflictException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateDeveloperDto, LoginDeveloperDto, UpdateDeveloperDto } from 'src/dtos';
+import { CreateDeveloperDto, DeveloperResDto, LoginDeveloperDto, UpdateDeveloperDto } from 'src/dtos';
 import { Developer } from 'src/entities/developer';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
+import { plainToInstance } from 'class-transformer';
 
 @Injectable()
 export class DevelopersService {
@@ -21,7 +22,8 @@ export class DevelopersService {
 
     const hashPassword = await bcrypt.hash(password, 11);
 
-    return await this.DevelopersRepository.save({ email, password: hashPassword, clientId, clientSecret });
+    const developer = await this.DevelopersRepository.save({ email, password: hashPassword, clientId, clientSecret });
+    return plainToInstance(DeveloperResDto, developer, { excludeExtraneousValues: true });
   }
 
   async login(dto: LoginDeveloperDto) {
@@ -38,7 +40,8 @@ export class DevelopersService {
 
   async findOne(id: number) {
     try {
-      return await this.DevelopersRepository.findOneByOrFail({ id });
+      const developer = await this.DevelopersRepository.findOneByOrFail({ id });
+      return plainToInstance(DeveloperResDto, developer, { excludeExtraneousValues: true });
     } catch {
       throw new NotFoundException('등록된 개발자가 아닙니다.');
     }
@@ -47,8 +50,12 @@ export class DevelopersService {
   async update(id: number, dto: UpdateDeveloperDto) {
     try {
       const developer = await this.DevelopersRepository.findOneByOrFail({ id });
+
+      if (dto.password) dto.password = await bcrypt.hash(dto.password, 11);
+
       Object.assign(developer, dto);
-      return await this.DevelopersRepository.save(developer);
+      const updateDeveloper = await this.DevelopersRepository.save(developer);
+      return plainToInstance(DeveloperResDto, updateDeveloper, { excludeExtraneousValues: true });
     } catch {
       throw new NotFoundException('등록된 개발자가 아닙니다.');
     }
@@ -57,7 +64,8 @@ export class DevelopersService {
   async remove(id: number) {
     try {
       const developer = await this.DevelopersRepository.findOneByOrFail({ id });
-      return await this.DevelopersRepository.remove(developer);
+      await this.DevelopersRepository.remove(developer);
+      return '삭제되었습니다.';
     } catch {
       throw new NotFoundException('등록된 개발자가 아닙니다.');
     }

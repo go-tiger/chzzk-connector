@@ -1,6 +1,9 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
 import { DevelopersService } from './developers.service';
 import { CreateDeveloperDto, LoginDeveloperDto, UpdateDeveloperDto } from 'src/dtos';
+import { GetDeveloperId } from 'src/commons/get-developer-id.decorator';
+import { AuthGuard } from '@nestjs/passport';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @Controller('developers')
 export class DevelopersController {
@@ -16,18 +19,24 @@ export class DevelopersController {
     return this.developersService.login(dto);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.developersService.findOne(+id);
+  @Get()
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard())
+  findOne(@GetDeveloperId() developerId: number) {
+    return this.developersService.findOne(developerId);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() dto: UpdateDeveloperDto) {
-    return this.developersService.update(+id, dto);
+  @Patch()
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard())
+  update(@GetDeveloperId() developerId: number, @Body() dto: UpdateDeveloperDto) {
+    return this.developersService.update(developerId, dto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.developersService.remove(+id);
+  @Delete()
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard())
+  remove(@GetDeveloperId() developerId: number) {
+    return this.developersService.remove(developerId);
   }
 }
