@@ -7,6 +7,7 @@ import { Repository } from 'typeorm';
 import { DevelopersService } from '../developers/developers.service';
 import { firstValueFrom } from 'rxjs';
 import { SessionType } from 'src/enums/session-type.enum';
+import { TokensService } from '../tokens/tokens.service';
 
 @Injectable()
 export class SessionsService {
@@ -14,6 +15,7 @@ export class SessionsService {
   constructor(
     private readonly httpService: HttpService,
     private readonly developersService: DevelopersService,
+    private readonly tokensService: TokensService,
     @InjectRepository(Session) private SessionRepository: Repository<Session>,
   ) {}
 
@@ -37,6 +39,30 @@ export class SessionsService {
         developer,
       });
       await this.SessionRepository.save(session);
+    } catch (e) {
+      console.log('🚀 e:', e);
+    }
+  }
+
+  async createSessionUser(id: number) {
+    const token = await this.tokensService.findOneToken(id);
+
+    const requestHeader = {
+      Authorization: token.tokenType + ' ' + token.accessToken,
+      'Content-Type': 'application/json',
+    };
+
+    try {
+      const { data } = await firstValueFrom(
+        this.httpService.get(`${this.chzzkOpenApi}/open/v1/sessions/auth`, { headers: requestHeader }),
+      );
+
+      const session = this.SessionRepository.create({
+        url: data.content.url,
+        sessionType: SessionType.USER,
+      });
+      await this.SessionRepository.save(session);
+      console.log('🚀 data:', data);
     } catch (e) {
       console.log('🚀 e:', e);
     }

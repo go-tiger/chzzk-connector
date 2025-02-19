@@ -5,9 +5,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Session } from 'src/entities/session';
 import { HttpModule } from '@nestjs/axios';
 import { DevelopersModule } from '../developers/developers.module';
+import { TokensModule } from '../tokens/tokens.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Session]), HttpModule, DevelopersModule],
+  imports: [TypeOrmModule.forFeature([Session]), HttpModule, DevelopersModule, TokensModule],
   controllers: [SessionsController],
   providers: [SessionsService],
 })

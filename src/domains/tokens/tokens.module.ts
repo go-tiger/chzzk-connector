@@ -10,5 +10,6 @@ import { DevelopersModule } from '../developers/developers.module';
   imports: [TypeOrmModule.forFeature([Token]), HttpModule, DevelopersModule],
   controllers: [TokensController],
   providers: [TokensService],
+  exports: [TokensService],
 })
 export class TokensModule {}

@@ -9,4 +9,9 @@ export class SessionsController {
   createSessionClient(@Param('id') id: string) {
     return this.sessionsService.createSessionClient(+id);
   }
+
+  @Post(':id/user')
+  createSessionUser(@Param('id') id: string) {
+    return this.sessionsService.createSessionUser(+id);
+  }
 }
