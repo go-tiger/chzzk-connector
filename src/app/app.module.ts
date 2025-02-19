@@ -12,7 +12,7 @@ import { StreamersModule } from 'src/domains/streamers/streamers.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRootAsync({ imports: [ConfigModule], inject: [ConfigService], useClass: TypeOrmConfig }),
     DevelopersModule,
     EventsModule,

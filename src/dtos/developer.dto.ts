@@ -1,4 +1,4 @@
-import { ApiProperty, OmitType, PartialType } from '@nestjs/swagger';
+import { ApiProperty, OmitType, PartialType, PickType } from '@nestjs/swagger';
 
 export class DeveloperDto {
   @ApiProperty({ example: 1 })
@@ -20,3 +20,5 @@ export class DeveloperDto {
 export class CreateDeveloperDto extends OmitType(DeveloperDto, ['id'] as const) {}
 
 export class UpdateDeveloperDto extends PartialType(CreateDeveloperDto) {}
+
+export class LoginDeveloperDto extends PickType(DeveloperDto, ['email', 'password'] as const) {}

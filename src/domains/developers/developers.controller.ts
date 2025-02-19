@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { DevelopersService } from './developers.service';
-import { CreateDeveloperDto, UpdateDeveloperDto } from 'src/dtos';
+import { CreateDeveloperDto, LoginDeveloperDto, UpdateDeveloperDto } from 'src/dtos';
 
 @Controller('developers')
 export class DevelopersController {
@@ -9,6 +9,11 @@ export class DevelopersController {
   @Post('signup')
   create(@Body() dto: CreateDeveloperDto) {
     return this.developersService.create(dto);
+  }
+
+  @Post('login')
+  login(@Body() dto: LoginDeveloperDto) {
+    return this.developersService.login(dto);
   }
 
   @Get(':id')

@@ -1,13 +1,17 @@
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateDeveloperDto, UpdateDeveloperDto } from 'src/dtos';
+import { CreateDeveloperDto, LoginDeveloperDto, UpdateDeveloperDto } from 'src/dtos';
 import { Developer } from 'src/entities/developer';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class DevelopersService {
-  constructor(@InjectRepository(Developer) private DevelopersRepository: Repository<Developer>) {}
+  constructor(
+    @InjectRepository(Developer) private DevelopersRepository: Repository<Developer>,
+    private jwtService: JwtService,
+  ) {}
 
   async create(dto: CreateDeveloperDto) {
     const { email, password, clientId, clientSecret } = dto;
@@ -18,6 +22,18 @@ export class DevelopersService {
     const hashPassword = await bcrypt.hash(password, 11);
 
     return await this.DevelopersRepository.save({ email, password: hashPassword, clientId, clientSecret });
+  }
+
+  async login(dto: LoginDeveloperDto) {
+    const { email, password } = dto;
+    const userData = await this.DevelopersRepository.findOne({ where: { email } });
+
+    if (userData && (await bcrypt.compare(password, userData.password))) {
+      const payload = { id: userData.id };
+      return { accessToken: this.jwtService.sign(payload) };
+    } else {
+      throw new UnauthorizedException('로그인 실패');
+    }
   }
 
   async findOne(id: number) {
