@@ -15,4 +15,9 @@ export class EventsController {
   unsubscribeChat(@Param('id') id: string, @Query() query: SessionKeyDto) {
     return this.eventsService.unsubscribeChat(+id, query);
   }
+
+  @Post(':id/donation')
+  subscribeDonation(@Param('id') id: string, @Query() query: SessionKeyDto) {
+    return this.eventsService.subscribeDonation(+id, query);
+  }
 }
