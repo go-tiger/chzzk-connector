@@ -53,6 +53,7 @@ const RAW_RUNTIME_STATE =
           ["@types/supertest", "npm:6.0.2"],\
           ["axios", "npm:1.7.9"],\
           ["bcrypt", "npm:5.1.1"],\
+          ["class-transformer", "npm:0.5.1"],\
           ["eslint", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:9.20.1"],\
           ["eslint-config-prettier", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:10.0.1"],\
           ["eslint-plugin-prettier", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:5.2.3"],\
@@ -2221,7 +2222,7 @@ const RAW_RUNTIME_STATE =
           ["@types/class-validator", null],\
           ["@types/reflect-metadata", null],\
           ["@types/rxjs", null],\
-          ["class-transformer", null],\
+          ["class-transformer", "npm:0.5.1"],\
           ["class-validator", null],\
           ["iterare", "npm:1.2.1"],\
           ["reflect-metadata", "npm:0.2.2"],\
@@ -2360,7 +2361,7 @@ const RAW_RUNTIME_STATE =
           ["@types/class-validator", null],\
           ["@types/nestjs__common", null],\
           ["@types/reflect-metadata", null],\
-          ["class-transformer", null],\
+          ["class-transformer", "npm:0.5.1"],\
           ["class-validator", null],\
           ["reflect-metadata", "npm:0.2.2"]\
         ],\
@@ -2484,7 +2485,7 @@ const RAW_RUNTIME_STATE =
           ["@types/nestjs__common", null],\
           ["@types/nestjs__core", null],\
           ["@types/reflect-metadata", null],\
-          ["class-transformer", null],\
+          ["class-transformer", "npm:0.5.1"],\
           ["class-validator", null],\
           ["js-yaml", "npm:4.1.0"],\
           ["lodash", "npm:4.17.21"],\
@@ -4906,6 +4907,7 @@ const RAW_RUNTIME_STATE =
           ["@types/supertest", "npm:6.0.2"],\
           ["axios", "npm:1.7.9"],\
           ["bcrypt", "npm:5.1.1"],\
+          ["class-transformer", "npm:0.5.1"],\
           ["eslint", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:9.20.1"],\
           ["eslint-config-prettier", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:10.0.1"],\
           ["eslint-plugin-prettier", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:5.2.3"],\
@@ -4945,6 +4947,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/cjs-module-lexer-npm-1.4.3-4a46e7bf6c-076b3af85a.zip/node_modules/cjs-module-lexer/",\
         "packageDependencies": [\
           ["cjs-module-lexer", "npm:1.4.3"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["class-transformer", [\
+      ["npm:0.5.1", {\
+        "packageLocation": "./.yarn/cache/class-transformer-npm-0.5.1-96b5161e6c-19809914e5.zip/node_modules/class-transformer/",\
+        "packageDependencies": [\
+          ["class-transformer", "npm:0.5.1"]\
         ],\
         "linkType": "HARD"\
       }]\
