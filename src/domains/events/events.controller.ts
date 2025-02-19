@@ -1,4 +1,4 @@
-import { Controller, Post, Param, Query } from '@nestjs/common';
+import { Controller, Post, Param, Query, Delete } from '@nestjs/common';
 import { EventsService } from './events.service';
 import { SessionKeyDto } from 'src/dtos';
 
@@ -9,5 +9,10 @@ export class EventsController {
   @Post(':id/chat')
   subscribeChat(@Param('id') id: string, @Query() query: SessionKeyDto) {
     return this.eventsService.subscribeChat(+id, query);
+  }
+
+  @Delete(':id/chat')
+  unsubscribeChat(@Param('id') id: string, @Query() query: SessionKeyDto) {
+    return this.eventsService.unsubscribeChat(+id, query);
   }
 }
