@@ -7,10 +7,16 @@ export class Developer {
   @PrimaryGeneratedColumn({ type: 'integer' })
   id: number;
 
-  @Column({ type: 'uuid', name: 'client_id' })
+  @Column({ type: 'varchar' })
+  email: string;
+
+  @Column({ type: 'text' })
+  password: string;
+
+  @Column({ type: 'uuid', name: 'client_id', unique: true })
   clientId: string;
 
-  @Column({ type: 'text', name: 'client_secret' })
+  @Column({ type: 'text', name: 'client_secret', unique: true })
   clientSecret: string;
 
   @OneToOne(() => Session)

@@ -4,6 +4,12 @@ export class DeveloperDto {
   @ApiProperty({ example: 1 })
   id: number;
 
+  @ApiProperty({ description: '이메일' })
+  email: string;
+
+  @ApiProperty({ description: '비밀번호' })
+  password: string;
+
   @ApiProperty({ example: '12a7764f-0582-456f-a358-884fa70e5caa' })
   clientId: string;
 
