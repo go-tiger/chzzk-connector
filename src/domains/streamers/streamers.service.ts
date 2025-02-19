@@ -40,4 +40,22 @@ export class StreamersService {
       console.log('🚀 e:', e);
     }
   }
+
+  async findStreamer(id: number) {
+    const token = await this.tokensService.findOneToken(id);
+
+    const requestHeader = {
+      Authorization: token.tokenType + ' ' + token.accessToken,
+      'Content-Type': 'application/json',
+    };
+
+    try {
+      const { data } = await firstValueFrom(
+        this.httpService.get(`${this.chzzkOpenApi}/open/v1/users/me`, { headers: requestHeader }),
+      );
+      return data;
+    } catch (e) {
+      console.log('🚀 e:', e);
+    }
+  }
 }
