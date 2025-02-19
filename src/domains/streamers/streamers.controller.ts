@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Param } from '@nestjs/common';
+import { Controller, Get, Post, Param, Delete } from '@nestjs/common';
 import { StreamersService } from './streamers.service';
 
 @Controller('streamers')
@@ -13,5 +13,10 @@ export class StreamersController {
   @Get(':id')
   findStreamer(@Param('id') id: string) {
     return this.streamersService.findStreamer(+id);
+  }
+
+  @Delete(':id')
+  removeStreamer(@Param('id') id: string) {
+    return this.streamersService.removeStreamer(+id);
   }
 }

@@ -6,6 +6,7 @@ import { CHZZK_BASE_URLS } from 'src/configs/chzzk.config';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Streamer } from 'src/entities/streamer';
 import { Repository } from 'typeorm';
+import { Token } from 'src/entities/token';
 
 @Injectable()
 export class StreamersService {
@@ -14,6 +15,7 @@ export class StreamersService {
     private readonly httpService: HttpService,
     private readonly tokensService: TokensService,
     @InjectRepository(Streamer) private StreamerRepository: Repository<Streamer>,
+    @InjectRepository(Token) private TokenRepository: Repository<Token>,
   ) {}
 
   async createStreamer(id: number) {
@@ -54,6 +56,27 @@ export class StreamersService {
         this.httpService.get(`${this.chzzkOpenApi}/open/v1/users/me`, { headers: requestHeader }),
       );
       return data;
+    } catch (e) {
+      console.log('🚀 e:', e);
+    }
+  }
+
+  async removeStreamer(id: number) {
+    const token = await this.tokensService.findOneToken(id);
+
+    const requestHeader = {
+      Authorization: token.tokenType + ' ' + token.accessToken,
+      'Content-Type': 'application/json',
+    };
+
+    try {
+      const { data } = await firstValueFrom(
+        this.httpService.get(`${this.chzzkOpenApi}/open/v1/users/me`, { headers: requestHeader }),
+      );
+
+      const streamer = await this.StreamerRepository.findOneOrFail({ where: { channel: data.content.channelId } });
+
+      return await this.TokenRepository.delete(id);
     } catch (e) {
       console.log('🚀 e:', e);
     }

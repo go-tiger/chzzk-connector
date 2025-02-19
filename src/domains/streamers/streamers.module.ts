@@ -5,9 +5,10 @@ import { TokensModule } from '../tokens/tokens.module';
 import { HttpModule } from '@nestjs/axios';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Streamer } from 'src/entities/streamer';
+import { Token } from 'src/entities/token';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Streamer]), TokensModule, HttpModule],
+  imports: [TypeOrmModule.forFeature([Streamer, Token]), TokensModule, HttpModule],
   controllers: [StreamersController],
   providers: [StreamersService],
 })
