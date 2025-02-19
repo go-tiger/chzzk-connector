@@ -39,7 +39,7 @@ export class SessionsService {
         sessionType: SessionType.CLIENT,
         developer,
       });
-      await this.SessionRepository.save(session);
+      return await this.SessionRepository.save(session);
     } catch (e) {
       console.log('🚀 e:', e);
     }
@@ -62,8 +62,7 @@ export class SessionsService {
         url: data.content.url,
         sessionType: SessionType.USER,
       });
-      await this.SessionRepository.save(session);
-      console.log('🚀 data:', data);
+      return await this.SessionRepository.save(session);
     } catch (e) {
       console.log('🚀 e:', e);
     }
