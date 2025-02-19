@@ -7,3 +7,8 @@ export class FindSessionDto {
   @ApiProperty({ example: 0, default: 0, description: '조회할 페이지. 0부터 조회 가능' })
   page: string;
 }
+
+export class SessionKeyDto {
+  @ApiProperty({ example: '60582ffd-81a2-4d54-ae84-9424a7efaf3c', description: '세션 식별자' })
+  sessionKey: string;
+}
