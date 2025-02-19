@@ -81,4 +81,26 @@ export class EventsService {
       return e.response.data;
     }
   }
+
+  async unsubscribeDonation(id: number, query: SessionKeyDto) {
+    const token = await this.tokensService.findOneToken(id);
+
+    const requestHeader = {
+      Authorization: token.tokenType + ' ' + token.accessToken,
+      'Content-Type': 'application/json',
+    };
+
+    try {
+      const { data } = await firstValueFrom(
+        this.httpService.post(
+          `${this.chzzkOpenApi}/open/v1/sessions/events/unsubscribe/donation`,
+          {},
+          { headers: requestHeader, params: { sessionKey: query.sessionKey } },
+        ),
+      );
+      return data;
+    } catch (e) {
+      return e.response.data;
+    }
+  }
 }

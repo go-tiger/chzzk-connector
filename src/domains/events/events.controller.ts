@@ -20,4 +20,9 @@ export class EventsController {
   subscribeDonation(@Param('id') id: string, @Query() query: SessionKeyDto) {
     return this.eventsService.subscribeDonation(+id, query);
   }
+
+  @Delete(':id/donation')
+  unsubscribeDonation(@Param('id') id: string, @Query() query: SessionKeyDto) {
+    return this.eventsService.unsubscribeDonation(+id, query);
+  }
 }
