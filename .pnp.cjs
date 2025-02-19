@@ -34,6 +34,8 @@ const RAW_RUNTIME_STATE =
           ["@nestjs/common", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:11.0.9"],\
           ["@nestjs/config", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:4.0.0"],\
           ["@nestjs/core", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:11.0.9"],\
+          ["@nestjs/jwt", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:11.0.0"],\
+          ["@nestjs/passport", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:11.0.5"],\
           ["@nestjs/platform-express", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:11.0.9"],\
           ["@nestjs/schematics", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:11.0.0"],\
           ["@nestjs/swagger", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:11.0.3"],\
@@ -45,6 +47,8 @@ const RAW_RUNTIME_STATE =
           ["@types/express", "npm:5.0.0"],\
           ["@types/jest", "npm:29.5.14"],\
           ["@types/node", "npm:22.13.4"],\
+          ["@types/passport", "npm:0.4.7"],\
+          ["@types/passport-jwt", "npm:4.0.1"],\
           ["@types/pg", "npm:8.11.11"],\
           ["@types/supertest", "npm:6.0.2"],\
           ["axios", "npm:1.7.9"],\
@@ -54,6 +58,8 @@ const RAW_RUNTIME_STATE =
           ["eslint-plugin-prettier", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:5.2.3"],\
           ["globals", "npm:15.15.0"],\
           ["jest", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:29.7.0"],\
+          ["passport", "npm:0.7.0"],\
+          ["passport-jwt", "npm:4.0.1"],\
           ["pg", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:8.13.3"],\
           ["prettier", "npm:3.5.1"],\
           ["reflect-metadata", "npm:0.2.2"],\
@@ -2313,6 +2319,30 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@nestjs/jwt", [\
+      ["npm:11.0.0", {\
+        "packageLocation": "./.yarn/cache/@nestjs-jwt-npm-11.0.0-d53025e3a5-e4c28d7feb.zip/node_modules/@nestjs/jwt/",\
+        "packageDependencies": [\
+          ["@nestjs/jwt", "npm:11.0.0"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:11.0.0", {\
+        "packageLocation": "./.yarn/__virtual__/@nestjs-jwt-virtual-bae8ba29c0/0/cache/@nestjs-jwt-npm-11.0.0-d53025e3a5-e4c28d7feb.zip/node_modules/@nestjs/jwt/",\
+        "packageDependencies": [\
+          ["@nestjs/jwt", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:11.0.0"],\
+          ["@nestjs/common", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:11.0.9"],\
+          ["@types/jsonwebtoken", "npm:9.0.7"],\
+          ["@types/nestjs__common", null],\
+          ["jsonwebtoken", "npm:9.0.2"]\
+        ],\
+        "packagePeers": [\
+          "@nestjs/common",\
+          "@types/nestjs__common"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@nestjs/mapped-types", [\
       ["npm:2.1.0", {\
         "packageLocation": "./.yarn/cache/@nestjs-mapped-types-npm-2.1.0-8116adbc87-cd9f923664.zip/node_modules/@nestjs/mapped-types/",\
@@ -2343,6 +2373,32 @@ const RAW_RUNTIME_STATE =
           "class-transformer",\
           "class-validator",\
           "reflect-metadata"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@nestjs/passport", [\
+      ["npm:11.0.5", {\
+        "packageLocation": "./.yarn/cache/@nestjs-passport-npm-11.0.5-7176f1ced2-24175f6791.zip/node_modules/@nestjs/passport/",\
+        "packageDependencies": [\
+          ["@nestjs/passport", "npm:11.0.5"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:11.0.5", {\
+        "packageLocation": "./.yarn/__virtual__/@nestjs-passport-virtual-f3ec5222af/0/cache/@nestjs-passport-npm-11.0.5-7176f1ced2-24175f6791.zip/node_modules/@nestjs/passport/",\
+        "packageDependencies": [\
+          ["@nestjs/passport", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:11.0.5"],\
+          ["@nestjs/common", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:11.0.9"],\
+          ["@types/nestjs__common", null],\
+          ["@types/passport", "npm:0.4.7"],\
+          ["passport", "npm:0.7.0"]\
+        ],\
+        "packagePeers": [\
+          "@nestjs/common",\
+          "@types/nestjs__common",\
+          "@types/passport",\
+          "passport"\
         ],\
         "linkType": "HARD"\
       }]\
@@ -3136,6 +3192,25 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@types/jsonwebtoken", [\
+      ["npm:9.0.7", {\
+        "packageLocation": "./.yarn/cache/@types-jsonwebtoken-npm-9.0.7-da827cdc0b-e1cd0e48fc.zip/node_modules/@types/jsonwebtoken/",\
+        "packageDependencies": [\
+          ["@types/jsonwebtoken", "npm:9.0.7"],\
+          ["@types/node", "npm:22.13.4"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["npm:9.0.8", {\
+        "packageLocation": "./.yarn/cache/@types-jsonwebtoken-npm-9.0.8-a3a60e33de-dd3ccea051.zip/node_modules/@types/jsonwebtoken/",\
+        "packageDependencies": [\
+          ["@types/jsonwebtoken", "npm:9.0.8"],\
+          ["@types/ms", "npm:2.1.0"],\
+          ["@types/node", "npm:22.13.4"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@types/methods", [\
       ["npm:1.1.4", {\
         "packageLocation": "./.yarn/cache/@types-methods-npm-1.1.4-8565dc8af4-a78534d79c.zip/node_modules/@types/methods/",\
@@ -3154,12 +3229,61 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@types/ms", [\
+      ["npm:2.1.0", {\
+        "packageLocation": "./.yarn/cache/@types-ms-npm-2.1.0-529ef799cc-5ce692ffe1.zip/node_modules/@types/ms/",\
+        "packageDependencies": [\
+          ["@types/ms", "npm:2.1.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@types/node", [\
       ["npm:22.13.4", {\
         "packageLocation": "./.yarn/cache/@types-node-npm-22.13.4-80985669cb-3a234fa776.zip/node_modules/@types/node/",\
         "packageDependencies": [\
           ["@types/node", "npm:22.13.4"],\
           ["undici-types", "npm:6.20.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@types/passport", [\
+      ["npm:0.4.7", {\
+        "packageLocation": "./.yarn/cache/@types-passport-npm-0.4.7-41ee4f6974-58ca21800b.zip/node_modules/@types/passport/",\
+        "packageDependencies": [\
+          ["@types/passport", "npm:0.4.7"],\
+          ["@types/express", "npm:5.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["npm:1.0.17", {\
+        "packageLocation": "./.yarn/cache/@types-passport-npm-1.0.17-f7599941ec-09039429a9.zip/node_modules/@types/passport/",\
+        "packageDependencies": [\
+          ["@types/passport", "npm:1.0.17"],\
+          ["@types/express", "npm:5.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@types/passport-jwt", [\
+      ["npm:4.0.1", {\
+        "packageLocation": "./.yarn/cache/@types-passport-jwt-npm-4.0.1-521dae8c91-0ced0eaa7b.zip/node_modules/@types/passport-jwt/",\
+        "packageDependencies": [\
+          ["@types/passport-jwt", "npm:4.0.1"],\
+          ["@types/jsonwebtoken", "npm:9.0.8"],\
+          ["@types/passport-strategy", "npm:0.2.38"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@types/passport-strategy", [\
+      ["npm:0.2.38", {\
+        "packageLocation": "./.yarn/cache/@types-passport-strategy-npm-0.2.38-6460f7e728-d7d2b1782a.zip/node_modules/@types/passport-strategy/",\
+        "packageDependencies": [\
+          ["@types/passport-strategy", "npm:0.2.38"],\
+          ["@types/express", "npm:5.0.0"],\
+          ["@types/passport", "npm:1.0.17"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -4533,6 +4657,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["buffer-equal-constant-time", [\
+      ["npm:1.0.1", {\
+        "packageLocation": "./.yarn/cache/buffer-equal-constant-time-npm-1.0.1-41826f3419-fb2294e64d.zip/node_modules/buffer-equal-constant-time/",\
+        "packageDependencies": [\
+          ["buffer-equal-constant-time", "npm:1.0.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["buffer-from", [\
       ["npm:1.1.2", {\
         "packageLocation": "./.yarn/cache/buffer-from-npm-1.1.2-03d2f20d7e-124fff9d66.zip/node_modules/buffer-from/",\
@@ -4754,6 +4887,8 @@ const RAW_RUNTIME_STATE =
           ["@nestjs/common", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:11.0.9"],\
           ["@nestjs/config", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:4.0.0"],\
           ["@nestjs/core", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:11.0.9"],\
+          ["@nestjs/jwt", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:11.0.0"],\
+          ["@nestjs/passport", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:11.0.5"],\
           ["@nestjs/platform-express", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:11.0.9"],\
           ["@nestjs/schematics", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:11.0.0"],\
           ["@nestjs/swagger", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:11.0.3"],\
@@ -4765,6 +4900,8 @@ const RAW_RUNTIME_STATE =
           ["@types/express", "npm:5.0.0"],\
           ["@types/jest", "npm:29.5.14"],\
           ["@types/node", "npm:22.13.4"],\
+          ["@types/passport", "npm:0.4.7"],\
+          ["@types/passport-jwt", "npm:4.0.1"],\
           ["@types/pg", "npm:8.11.11"],\
           ["@types/supertest", "npm:6.0.2"],\
           ["axios", "npm:1.7.9"],\
@@ -4774,6 +4911,8 @@ const RAW_RUNTIME_STATE =
           ["eslint-plugin-prettier", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:5.2.3"],\
           ["globals", "npm:15.15.0"],\
           ["jest", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:29.7.0"],\
+          ["passport", "npm:0.7.0"],\
+          ["passport-jwt", "npm:4.0.1"],\
           ["pg", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:8.13.3"],\
           ["prettier", "npm:3.5.1"],\
           ["reflect-metadata", "npm:0.2.2"],\
@@ -5471,6 +5610,16 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/eastasianwidth-npm-0.2.0-c37eb16bd1-26f364ebcd.zip/node_modules/eastasianwidth/",\
         "packageDependencies": [\
           ["eastasianwidth", "npm:0.2.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["ecdsa-sig-formatter", [\
+      ["npm:1.0.11", {\
+        "packageLocation": "./.yarn/cache/ecdsa-sig-formatter-npm-1.0.11-b6784e7852-ebfbf19d4b.zip/node_modules/ecdsa-sig-formatter/",\
+        "packageDependencies": [\
+          ["ecdsa-sig-formatter", "npm:1.0.11"],\
+          ["safe-buffer", "npm:5.2.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -7896,6 +8045,48 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["jsonwebtoken", [\
+      ["npm:9.0.2", {\
+        "packageLocation": "./.yarn/cache/jsonwebtoken-npm-9.0.2-42c6b14d02-d287a29814.zip/node_modules/jsonwebtoken/",\
+        "packageDependencies": [\
+          ["jsonwebtoken", "npm:9.0.2"],\
+          ["jws", "npm:3.2.2"],\
+          ["lodash.includes", "npm:4.3.0"],\
+          ["lodash.isboolean", "npm:3.0.3"],\
+          ["lodash.isinteger", "npm:4.0.4"],\
+          ["lodash.isnumber", "npm:3.0.3"],\
+          ["lodash.isplainobject", "npm:4.0.6"],\
+          ["lodash.isstring", "npm:4.0.1"],\
+          ["lodash.once", "npm:4.1.1"],\
+          ["ms", "npm:2.1.3"],\
+          ["semver", "npm:7.7.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["jwa", [\
+      ["npm:1.4.1", {\
+        "packageLocation": "./.yarn/cache/jwa-npm-1.4.1-4f19d6572c-5c533540bf.zip/node_modules/jwa/",\
+        "packageDependencies": [\
+          ["jwa", "npm:1.4.1"],\
+          ["buffer-equal-constant-time", "npm:1.0.1"],\
+          ["ecdsa-sig-formatter", "npm:1.0.11"],\
+          ["safe-buffer", "npm:5.2.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["jws", [\
+      ["npm:3.2.2", {\
+        "packageLocation": "./.yarn/cache/jws-npm-3.2.2-c1ae59c7af-e770704533.zip/node_modules/jws/",\
+        "packageDependencies": [\
+          ["jws", "npm:3.2.2"],\
+          ["jwa", "npm:1.4.1"],\
+          ["safe-buffer", "npm:5.2.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["keyv", [\
       ["npm:4.5.4", {\
         "packageLocation": "./.yarn/cache/keyv-npm-4.5.4-4c8e2cf7f7-aa52f3c5e1.zip/node_modules/keyv/",\
@@ -7989,6 +8180,60 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["lodash.includes", [\
+      ["npm:4.3.0", {\
+        "packageLocation": "./.yarn/cache/lodash.includes-npm-4.3.0-3a2f6fa22c-7ca498b9b7.zip/node_modules/lodash.includes/",\
+        "packageDependencies": [\
+          ["lodash.includes", "npm:4.3.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["lodash.isboolean", [\
+      ["npm:3.0.3", {\
+        "packageLocation": "./.yarn/cache/lodash.isboolean-npm-3.0.3-b575b41488-0aac604c1e.zip/node_modules/lodash.isboolean/",\
+        "packageDependencies": [\
+          ["lodash.isboolean", "npm:3.0.3"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["lodash.isinteger", [\
+      ["npm:4.0.4", {\
+        "packageLocation": "./.yarn/cache/lodash.isinteger-npm-4.0.4-42add9f4e1-4c3e023a23.zip/node_modules/lodash.isinteger/",\
+        "packageDependencies": [\
+          ["lodash.isinteger", "npm:4.0.4"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["lodash.isnumber", [\
+      ["npm:3.0.3", {\
+        "packageLocation": "./.yarn/cache/lodash.isnumber-npm-3.0.3-b3bb5f7347-2d01530513.zip/node_modules/lodash.isnumber/",\
+        "packageDependencies": [\
+          ["lodash.isnumber", "npm:3.0.3"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["lodash.isplainobject", [\
+      ["npm:4.0.6", {\
+        "packageLocation": "./.yarn/cache/lodash.isplainobject-npm-4.0.6-d73937742f-afd70b5c45.zip/node_modules/lodash.isplainobject/",\
+        "packageDependencies": [\
+          ["lodash.isplainobject", "npm:4.0.6"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["lodash.isstring", [\
+      ["npm:4.0.1", {\
+        "packageLocation": "./.yarn/cache/lodash.isstring-npm-4.0.1-721fee791c-09eaf980a2.zip/node_modules/lodash.isstring/",\
+        "packageDependencies": [\
+          ["lodash.isstring", "npm:4.0.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["lodash.memoize", [\
       ["npm:4.1.2", {\
         "packageLocation": "./.yarn/cache/lodash.memoize-npm-4.1.2-0e6250041f-c8713e51ec.zip/node_modules/lodash.memoize/",\
@@ -8003,6 +8248,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/lodash.merge-npm-4.6.2-77cb4416bf-402fa16a1e.zip/node_modules/lodash.merge/",\
         "packageDependencies": [\
           ["lodash.merge", "npm:4.6.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["lodash.once", [\
+      ["npm:4.1.1", {\
+        "packageLocation": "./.yarn/cache/lodash.once-npm-4.1.1-d8ba329ead-46a9a0a66c.zip/node_modules/lodash.once/",\
+        "packageDependencies": [\
+          ["lodash.once", "npm:4.1.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -8911,6 +9165,38 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["passport", [\
+      ["npm:0.7.0", {\
+        "packageLocation": "./.yarn/cache/passport-npm-0.7.0-df02531736-08c940b86e.zip/node_modules/passport/",\
+        "packageDependencies": [\
+          ["passport", "npm:0.7.0"],\
+          ["passport-strategy", "npm:1.0.0"],\
+          ["pause", "npm:0.0.1"],\
+          ["utils-merge", "npm:1.0.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["passport-jwt", [\
+      ["npm:4.0.1", {\
+        "packageLocation": "./.yarn/cache/passport-jwt-npm-4.0.1-2841eea09e-d7e2b472d3.zip/node_modules/passport-jwt/",\
+        "packageDependencies": [\
+          ["passport-jwt", "npm:4.0.1"],\
+          ["jsonwebtoken", "npm:9.0.2"],\
+          ["passport-strategy", "npm:1.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["passport-strategy", [\
+      ["npm:1.0.0", {\
+        "packageLocation": "./.yarn/cache/passport-strategy-npm-1.0.0-5648a82a66-cf4cd32e1b.zip/node_modules/passport-strategy/",\
+        "packageDependencies": [\
+          ["passport-strategy", "npm:1.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["path-exists", [\
       ["npm:4.0.0", {\
         "packageLocation": "./.yarn/cache/path-exists-npm-4.0.0-e9e4f63eb0-8c0bd3f523.zip/node_modules/path-exists/",\
@@ -8981,6 +9267,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/path-type-npm-4.0.0-10d47fc86a-666f6973f3.zip/node_modules/path-type/",\
         "packageDependencies": [\
           ["path-type", "npm:4.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["pause", [\
+      ["npm:0.0.1", {\
+        "packageLocation": "./.yarn/cache/pause-npm-0.0.1-0c421a299d-f362655dfa.zip/node_modules/pause/",\
+        "packageDependencies": [\
+          ["pause", "npm:0.0.1"]\
         ],\
         "linkType": "HARD"\
       }]\
