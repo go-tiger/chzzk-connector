@@ -1,26 +1,44 @@
+import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
-import { CreateSessionDto } from './dto/create-session.dto';
-import { UpdateSessionDto } from './dto/update-session.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { CHZZK_BASE_URLS } from 'src/configs/chzzk.config';
+import { Session } from 'src/entities/session';
+import { Repository } from 'typeorm';
+import { DevelopersService } from '../developers/developers.service';
+import { firstValueFrom } from 'rxjs';
+import { SessionType } from 'src/enums/session-type.enum';
 
 @Injectable()
 export class SessionsService {
-  create(createSessionDto: CreateSessionDto) {
-    return 'This action adds a new session';
-  }
+  private readonly chzzkOpenApi: string = CHZZK_BASE_URLS.chzzkOpenApi;
+  constructor(
+    private readonly httpService: HttpService,
+    private readonly developersService: DevelopersService,
+    @InjectRepository(Session) private SessionRepository: Repository<Session>,
+  ) {}
 
-  findAll() {
-    return `This action returns all sessions`;
-  }
+  async createSessionClient(id: number) {
+    const developer = await this.developersService.findOne(id);
 
-  findOne(id: number) {
-    return `This action returns a #${id} session`;
-  }
+    const requestHeader = {
+      'Client-Id': developer.clientId,
+      'Client-Secret': developer.clientSecret,
+      'Content-Type': 'application/json',
+    };
 
-  update(id: number, updateSessionDto: UpdateSessionDto) {
-    return `This action updates a #${id} session`;
-  }
+    try {
+      const { data } = await firstValueFrom(
+        this.httpService.get(`${this.chzzkOpenApi}/open/v1/sessions/auth/client`, { headers: requestHeader }),
+      );
 
-  remove(id: number) {
-    return `This action removes a #${id} session`;
+      const session = this.SessionRepository.create({
+        url: data.content.url,
+        sessionType: SessionType.CLIENT,
+        developer,
+      });
+      await this.SessionRepository.save(session);
+    } catch (e) {
+      console.log('🚀 e:', e);
+    }
   }
 }
