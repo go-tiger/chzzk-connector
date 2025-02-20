@@ -9,6 +9,7 @@ import { firstValueFrom } from 'rxjs';
 import { SessionType } from 'src/enums/session-type.enum';
 import { TokensService } from '../tokens/tokens.service';
 import { FindSessionDto } from 'src/dtos';
+import { plainToInstance } from 'class-transformer';
 
 @Injectable()
 export class SessionsService {
@@ -39,7 +40,8 @@ export class SessionsService {
         sessionType: SessionType.CLIENT,
         developer,
       });
-      return await this.SessionRepository.save(session);
+      const saveSession = await this.SessionRepository.save(session);
+      return plainToInstance(Session, saveSession);
     } catch (e) {
       console.log('🚀 e:', e);
     }

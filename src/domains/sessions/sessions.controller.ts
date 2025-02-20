@@ -1,14 +1,19 @@
-import { Controller, Get, Param, Post, Query } from '@nestjs/common';
+import { Controller, Get, Param, Post, Query, UseGuards } from '@nestjs/common';
 import { SessionsService } from './sessions.service';
 import { FindSessionDto } from 'src/dtos';
+import { ApiBearerAuth } from '@nestjs/swagger';
+import { AuthGuard } from '@nestjs/passport';
+import { GetDeveloperId } from 'src/commons/get-developer-id.decorator';
 
 @Controller('sessions')
 export class SessionsController {
   constructor(private readonly sessionsService: SessionsService) {}
 
-  @Post(':id/client')
-  createSessionClient(@Param('id') id: string) {
-    return this.sessionsService.createSessionClient(+id);
+  @Post('client')
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard())
+  createSessionClient(@GetDeveloperId() developerId: number) {
+    return this.sessionsService.createSessionClient(developerId);
   }
 
   @Post(':id/user')
@@ -16,9 +21,11 @@ export class SessionsController {
     return this.sessionsService.createSessionUser(+id);
   }
 
-  @Get(':id/client')
-  findSessionClient(@Param('id') id: string, @Query() dto: FindSessionDto) {
-    return this.sessionsService.findSessionClient(+id, dto);
+  @Get('client')
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard())
+  findSessionClient(@GetDeveloperId() developerId: number, @Query() dto: FindSessionDto) {
+    return this.sessionsService.findSessionClient(developerId, dto);
   }
 
   @Get(':id/user')
