@@ -1,6 +1,7 @@
 import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Session } from './session';
 import { Event } from './event';
+import { Token } from './token';
 
 @Entity('developers', { schema: 'public' })
 export class Developer {
@@ -27,4 +28,7 @@ export class Developer {
 
   @OneToMany(() => Event, (event) => event.id)
   event: Event[];
+
+  @OneToMany(() => Token, (token) => token.developer, { cascade: true })
+  tokens: Token[];
 }

@@ -1,5 +1,6 @@
-import { Column, CreateDateColumn, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Streamer } from './streamer';
+import { Developer } from './developer';
 
 @Entity('tokens', { schema: 'public' })
 export class Token {
@@ -35,4 +36,8 @@ export class Token {
 
   @OneToOne(() => Streamer)
   streamers: Streamer;
+
+  @ManyToOne(() => Developer, (developer) => developer.id)
+  @JoinColumn({ name: 'developer_id', referencedColumnName: 'id' })
+  developer: Developer;
 }
