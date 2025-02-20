@@ -23,8 +23,8 @@ export class Developer {
   @Column({ type: 'varchar', name: 'application_id', unique: true })
   applicationId: string;
 
-  @OneToOne(() => Session)
-  sessions: Session;
+  @OneToMany(() => Session, (session) => session.id)
+  sessions: Session[];
 
   @OneToMany(() => Event, (event) => event.id)
   event: Event[];
