@@ -20,7 +20,7 @@ export class TokensService {
   ) {}
 
   async issueToken(query: GetCodeDto) {
-    const developer = await this.developersService.findOne(+query.state);
+    const developer = await this.developersService.findApplicationId(query.state);
     try {
       const requestBody = {
         grantType: GrantType.AUTH,
@@ -54,6 +54,7 @@ export class TokensService {
       return savedToken;
     } catch (e) {
       console.log('🚀  e:', e);
+      return e.response.data;
     }
   }
 

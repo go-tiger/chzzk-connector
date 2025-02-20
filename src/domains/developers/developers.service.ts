@@ -6,12 +6,16 @@ import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { plainToInstance } from 'class-transformer';
+import { CHZZK_BASE_URLS } from 'src/configs/chzzk.config';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class DevelopersService {
+  private readonly chzzkCodeUrl: string = CHZZK_BASE_URLS.chzzkCodeUrl;
   constructor(
     @InjectRepository(Developer) private DevelopersRepository: Repository<Developer>,
     private jwtService: JwtService,
+    private readonly configService: ConfigService,
   ) {}
 
   async create(dto: CreateDeveloperDto) {
@@ -44,9 +48,28 @@ export class DevelopersService {
     }
   }
 
+  async getCode(id: number) {
+    try {
+      const developer = await this.DevelopersRepository.findOneByOrFail({ id });
+      const serverUrl = this.configService.get<string>('ENV_SERVER_URL');
+      return `${this.chzzkCodeUrl}?clientId=${developer.clientId}&redirectUri=${serverUrl}/tokens&state=${developer.applicationId}`;
+    } catch {
+      throw new NotFoundException('등록된 개발자가 아닙니다.');
+    }
+  }
+
   async findOne(id: number) {
     try {
       const developer = await this.DevelopersRepository.findOneByOrFail({ id });
+      return plainToInstance(DeveloperResDto, developer, { excludeExtraneousValues: true });
+    } catch {
+      throw new NotFoundException('등록된 개발자가 아닙니다.');
+    }
+  }
+
+  async findApplicationId(applicationId: string) {
+    try {
+      const developer = await this.DevelopersRepository.findOneByOrFail({ applicationId });
       return plainToInstance(DeveloperResDto, developer, { excludeExtraneousValues: true });
     } catch {
       throw new NotFoundException('등록된 개발자가 아닙니다.');

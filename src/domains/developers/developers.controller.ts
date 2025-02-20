@@ -19,6 +19,13 @@ export class DevelopersController {
     return this.developersService.login(dto);
   }
 
+  @Get('code')
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard())
+  getCode(@GetDeveloperId() developerId: number) {
+    return this.developersService.getCode(developerId);
+  }
+
   @Get()
   @ApiBearerAuth()
   @UseGuards(AuthGuard())
