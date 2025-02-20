@@ -9,6 +9,7 @@ import { EventsModule } from 'src/domains/events/events.module';
 import { SessionsModule } from 'src/domains/sessions/sessions.module';
 import { TokensModule } from 'src/domains/tokens/tokens.module';
 import { StreamersModule } from 'src/domains/streamers/streamers.module';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { StreamersModule } from 'src/domains/streamers/streamers.module';
     SessionsModule,
     TokensModule,
     StreamersModule,
+    ScheduleModule.forRoot(),
   ],
   controllers: [AppController],
   providers: [AppService],

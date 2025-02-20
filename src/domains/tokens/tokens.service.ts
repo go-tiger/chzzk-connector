@@ -1,7 +1,7 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Token } from 'src/entities/token';
-import { Repository } from 'typeorm';
+import { LessThanOrEqual, Repository } from 'typeorm';
 import { GetCodeDto, RefreshTokenDto, RevokeTokenDto } from 'src/dtos';
 import { CHZZK_BASE_URLS } from 'src/configs/chzzk.config';
 import { HttpService } from '@nestjs/axios';
@@ -11,10 +11,13 @@ import { GrantType } from 'src/enums/grant-type.enum';
 import { TokenType } from 'src/enums/token-type.enum';
 import { plainToInstance } from 'class-transformer';
 import { StreamersService } from '../streamers/streamers.service';
+import { Cron } from '@nestjs/schedule';
 
 @Injectable()
 export class TokensService {
   private readonly chzzkTokenUrl: string = CHZZK_BASE_URLS.chzzkTokenUrl;
+  private readonly logger = new Logger(TokensService.name);
+
   constructor(
     private readonly httpService: HttpService,
     private readonly developersService: DevelopersService,
@@ -141,5 +144,25 @@ export class TokensService {
     } catch (e) {
       console.log('🚀  e:', e);
     }
+  }
+
+  @Cron('0 * * * *') // 매 시간 정각에 실행
+  async allRefreshToken() {
+    this.logger.log('🔄 Running allRefreshToken task...');
+
+    const twoHoursLater = new Date();
+    twoHoursLater.setHours(twoHoursLater.getHours() + 2);
+
+    const expiringTokens = await this.TokenRepository.find({
+      where: { expiresAt: LessThanOrEqual(twoHoursLater) },
+      select: ['id', 'refreshToken'],
+      relations: ['developer'],
+    });
+
+    for (const token of expiringTokens) {
+      await this.refreshToken(+token.developer.id, { refreshToken: token.refreshToken });
+    }
+    this.logger.log(`🚀 Found ${expiringTokens.length} tokens to refresh`);
+    this.logger.log('✅ Done allRefreshToken task');
   }
 }
