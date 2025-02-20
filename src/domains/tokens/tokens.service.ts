@@ -9,6 +9,7 @@ import { firstValueFrom } from 'rxjs';
 import { DevelopersService } from '../developers/developers.service';
 import { GrantType } from 'src/enums/grant-type.enum';
 import { TokenType } from 'src/enums/token-type.enum';
+import { plainToInstance } from 'class-transformer';
 
 @Injectable()
 export class TokensService {
@@ -42,6 +43,7 @@ export class TokensService {
         tokenType: data.content.tokenType,
         expiresIn: data.content.expiresIn,
         scope: data.content.scope,
+        developer,
       });
 
       const savedToken = await this.TokenRepository.save(token);
@@ -51,7 +53,7 @@ export class TokensService {
         await this.TokenRepository.save(savedToken);
       }
 
-      return savedToken;
+      return plainToInstance(Token, savedToken);
     } catch (e) {
       console.log('🚀  e:', e);
       return e.response.data;
