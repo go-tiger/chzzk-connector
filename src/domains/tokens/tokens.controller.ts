@@ -1,10 +1,11 @@
 import { Body, Controller, Delete, Get, Param, Patch, Query, UseGuards } from '@nestjs/common';
 import { TokensService } from './tokens.service';
 import { GetCodeDto, RefreshTokenDto, RevokeTokenDto } from 'src/dtos';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { GetDeveloperId } from 'src/commons/get-developer-id.decorator';
 
+@ApiTags('Tokens')
 @Controller('tokens')
 export class TokensController {
   constructor(private readonly tokensService: TokensService) {}

@@ -1,10 +1,11 @@
 import { Controller, Get, Param, Post, Query, UseGuards } from '@nestjs/common';
 import { SessionsService } from './sessions.service';
 import { FindSessionDto } from 'src/dtos';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { GetDeveloperId } from 'src/commons/get-developer-id.decorator';
 
+@ApiTags('Sessions')
 @Controller('sessions')
 export class SessionsController {
   constructor(private readonly sessionsService: SessionsService) {}

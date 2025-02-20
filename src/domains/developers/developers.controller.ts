@@ -3,8 +3,9 @@ import { DevelopersService } from './developers.service';
 import { CreateDeveloperDto, LoginDeveloperDto, UpdateDeveloperDto } from 'src/dtos';
 import { GetDeveloperId } from 'src/commons/get-developer-id.decorator';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Developers')
 @Controller('developers')
 export class DevelopersController {
   constructor(private readonly developersService: DevelopersService) {}

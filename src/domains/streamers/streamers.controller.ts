@@ -1,6 +1,8 @@
 import { Controller, Get, Post, Param, Delete } from '@nestjs/common';
 import { StreamersService } from './streamers.service';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Streamers')
 @Controller('streamers')
 export class StreamersController {
   constructor(private readonly streamersService: StreamersService) {}
