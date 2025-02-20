@@ -37,6 +37,7 @@ const RAW_RUNTIME_STATE =
           ["@nestjs/jwt", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:11.0.0"],\
           ["@nestjs/passport", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:11.0.5"],\
           ["@nestjs/platform-express", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:11.0.9"],\
+          ["@nestjs/schedule", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:5.0.1"],\
           ["@nestjs/schematics", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:11.0.0"],\
           ["@nestjs/swagger", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:11.0.3"],\
           ["@nestjs/testing", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:11.0.9"],\
@@ -2435,6 +2436,33 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@nestjs/schedule", [\
+      ["npm:5.0.1", {\
+        "packageLocation": "./.yarn/cache/@nestjs-schedule-npm-5.0.1-4c0c74a13b-160989e774.zip/node_modules/@nestjs/schedule/",\
+        "packageDependencies": [\
+          ["@nestjs/schedule", "npm:5.0.1"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:5.0.1", {\
+        "packageLocation": "./.yarn/__virtual__/@nestjs-schedule-virtual-60b8e32095/0/cache/@nestjs-schedule-npm-5.0.1-4c0c74a13b-160989e774.zip/node_modules/@nestjs/schedule/",\
+        "packageDependencies": [\
+          ["@nestjs/schedule", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:5.0.1"],\
+          ["@nestjs/common", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:11.0.9"],\
+          ["@nestjs/core", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:11.0.9"],\
+          ["@types/nestjs__common", null],\
+          ["@types/nestjs__core", null],\
+          ["cron", "npm:3.5.0"]\
+        ],\
+        "packagePeers": [\
+          "@nestjs/common",\
+          "@nestjs/core",\
+          "@types/nestjs__common",\
+          "@types/nestjs__core"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@nestjs/schematics", [\
       ["npm:11.0.0", {\
         "packageLocation": "./.yarn/cache/@nestjs-schematics-npm-11.0.0-8161dd8726-64d93d97d1.zip/node_modules/@nestjs/schematics/",\
@@ -3208,6 +3236,15 @@ const RAW_RUNTIME_STATE =
           ["@types/jsonwebtoken", "npm:9.0.8"],\
           ["@types/ms", "npm:2.1.0"],\
           ["@types/node", "npm:22.13.4"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@types/luxon", [\
+      ["npm:3.4.2", {\
+        "packageLocation": "./.yarn/cache/@types-luxon-npm-3.4.2-092583f006-d835467de3.zip/node_modules/@types/luxon/",\
+        "packageDependencies": [\
+          ["@types/luxon", "npm:3.4.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -4891,6 +4928,7 @@ const RAW_RUNTIME_STATE =
           ["@nestjs/jwt", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:11.0.0"],\
           ["@nestjs/passport", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:11.0.5"],\
           ["@nestjs/platform-express", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:11.0.9"],\
+          ["@nestjs/schedule", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:5.0.1"],\
           ["@nestjs/schematics", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:11.0.0"],\
           ["@nestjs/swagger", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:11.0.3"],\
           ["@nestjs/testing", "virtual:4cc4a4d6a0b6fcc0271b54d47f54d5c9747da27cd5ea1406077a2dc3521f6cdbe339a59f1a1cce67970a4307fc286072e996c79b18b4485021089cf9149857a8#npm:11.0.9"],\
@@ -5336,6 +5374,17 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/create-require-npm-1.1.1-839884ca2e-157cbc59b2.zip/node_modules/create-require/",\
         "packageDependencies": [\
           ["create-require", "npm:1.1.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["cron", [\
+      ["npm:3.5.0", {\
+        "packageLocation": "./.yarn/cache/cron-npm-3.5.0-33987e9355-ca5fbfb0d5.zip/node_modules/cron/",\
+        "packageDependencies": [\
+          ["cron", "npm:3.5.0"],\
+          ["@types/luxon", "npm:3.4.2"],\
+          ["luxon", "npm:3.5.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -8312,6 +8361,15 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["lru-cache", "npm:5.1.1"],\
           ["yallist", "npm:3.1.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["luxon", [\
+      ["npm:3.5.0", {\
+        "packageLocation": "./.yarn/cache/luxon-npm-3.5.0-92bb977f7f-335789bba9.zip/node_modules/luxon/",\
+        "packageDependencies": [\
+          ["luxon", "npm:3.5.0"]\
         ],\
         "linkType": "HARD"\
       }]\
