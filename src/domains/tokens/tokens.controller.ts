@@ -1,6 +1,9 @@
-import { Body, Controller, Delete, Get, Param, Patch, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Query, UseGuards } from '@nestjs/common';
 import { TokensService } from './tokens.service';
 import { GetCodeDto, RefreshTokenDto, RevokeTokenDto } from 'src/dtos';
+import { ApiBearerAuth } from '@nestjs/swagger';
+import { AuthGuard } from '@nestjs/passport';
+import { GetDeveloperId } from 'src/commons/get-developer-id.decorator';
 
 @Controller('tokens')
 export class TokensController {
@@ -11,9 +14,11 @@ export class TokensController {
     return this.tokensService.issueToken(query);
   }
 
-  @Get(':id')
-  findOneToken(@Param('id') id: string) {
-    return this.tokensService.findOneToken(+id);
+  @Get('dev')
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard())
+  getTokensByDeveloperId(@GetDeveloperId() developerId: number) {
+    return this.tokensService.getTokensByDeveloperId(developerId);
   }
 
   @Patch(':id')

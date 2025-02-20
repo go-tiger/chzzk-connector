@@ -60,6 +60,10 @@ export class TokensService {
     }
   }
 
+  async getTokensByDeveloperId(id: number) {
+    return this.TokenRepository.find({ where: { developer: { id } } });
+  }
+
   async findOneToken(id: number) {
     try {
       return await this.TokenRepository.findOneByOrFail({ id });
