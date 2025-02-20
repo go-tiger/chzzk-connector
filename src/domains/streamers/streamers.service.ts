@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { TokensService } from '../tokens/tokens.service';
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
@@ -13,6 +13,7 @@ export class StreamersService {
   private readonly chzzkOpenApi: string = CHZZK_BASE_URLS.chzzkOpenApi;
   constructor(
     private readonly httpService: HttpService,
+    @Inject(forwardRef(() => TokensService))
     private readonly tokensService: TokensService,
     @InjectRepository(Streamer) private StreamerRepository: Repository<Streamer>,
     @InjectRepository(Token) private TokenRepository: Repository<Token>,

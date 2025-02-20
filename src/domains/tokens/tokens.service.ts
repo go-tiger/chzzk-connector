@@ -10,6 +10,7 @@ import { DevelopersService } from '../developers/developers.service';
 import { GrantType } from 'src/enums/grant-type.enum';
 import { TokenType } from 'src/enums/token-type.enum';
 import { plainToInstance } from 'class-transformer';
+import { StreamersService } from '../streamers/streamers.service';
 
 @Injectable()
 export class TokensService {
@@ -17,6 +18,7 @@ export class TokensService {
   constructor(
     private readonly httpService: HttpService,
     private readonly developersService: DevelopersService,
+    private readonly streamersService: StreamersService,
     @InjectRepository(Token) private TokenRepository: Repository<Token>,
   ) {}
 
@@ -47,11 +49,14 @@ export class TokensService {
       });
 
       const savedToken = await this.TokenRepository.save(token);
+      console.log('🚀 savedToken:', savedToken);
 
       if (savedToken.createdAt && data.content.expiresIn) {
         savedToken.expiresAt = new Date(savedToken.createdAt.getTime() + data.content.expiresIn * 1000);
         await this.TokenRepository.save(savedToken);
       }
+
+      await this.streamersService.createStreamer(savedToken.id);
 
       return plainToInstance(Token, savedToken);
     } catch (e) {
