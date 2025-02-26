@@ -6,9 +6,15 @@ import { HttpModule } from '@nestjs/axios';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Streamer } from 'src/entities/streamer';
 import { Token } from 'src/entities/token';
+import { PassportModule } from '@nestjs/passport';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Streamer, Token]), forwardRef(() => TokensModule), HttpModule],
+  imports: [
+    TypeOrmModule.forFeature([Streamer, Token]),
+    PassportModule.register({ defaultStrategy: 'jwt' }),
+    forwardRef(() => TokensModule),
+    HttpModule,
+  ],
   controllers: [StreamersController],
   providers: [StreamersService],
   exports: [StreamersService],

@@ -62,6 +62,14 @@ export class StreamersService {
     }
   }
 
+  async getStremersByDeveloperId(developerId: number) {
+    return this.StreamerRepository.createQueryBuilder('streamer')
+      .innerJoinAndSelect('streamer.token', 'token')
+      .where('token.developer_id = :developerId', { developerId })
+      .orderBy('streamer.id', 'ASC')
+      .getMany();
+  }
+
   async removeStreamer(id: number) {
     const token = await this.tokensService.findOneToken(id);
 

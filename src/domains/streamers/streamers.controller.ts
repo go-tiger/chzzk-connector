@@ -1,6 +1,8 @@
-import { Controller, Get, Post, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Param, Delete, UseGuards } from '@nestjs/common';
 import { StreamersService } from './streamers.service';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { AuthGuard } from '@nestjs/passport';
+import { GetDeveloperId } from 'src/commons/get-developer-id.decorator';
 
 @ApiTags('Streamers')
 @Controller('streamers')
@@ -12,9 +14,16 @@ export class StreamersController {
     return this.streamersService.createStreamer(+id);
   }
 
-  @Get(':id')
+  @Get(':id/id')
   findStreamer(@Param('id') id: string) {
     return this.streamersService.findStreamer(+id);
+  }
+
+  @Get('dev')
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard())
+  getStremersByDeveloperId(@GetDeveloperId() developerId: number) {
+    return this.streamersService.getStremersByDeveloperId(developerId);
   }
 
   @Delete(':id')
